@@ -84,8 +84,10 @@ def do_kq():
     driver.save_screenshot('login.png')
     image = Image.open('login.png')
 
-    # 1600x900
+    # 1600 x 900
     frame = image.crop((905, 350, 965, 373))
+    # 1366 x 768
+    # frame = image.crop((788, 347, 848, 372))
     frame.save('code.png')
     image = Image.open('code.png')
 
