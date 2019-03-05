@@ -1,7 +1,6 @@
 from selenium import webdriver
 from PIL import Image
 from pytesseract import image_to_string
-import getpass
 from flask import Flask
 from flask_mail import Mail, Message
 import os
@@ -10,7 +9,7 @@ import sys
 
 app = Flask(__name__)
 mail_settings = {
-    "MAIL_SERVER": 'smtp.sina.com',
+    "MAIL_SERVER": 'Enter your mail server here',
     "MAIL_PORT": 25,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": False,
@@ -26,10 +25,8 @@ now = datetime.datetime.now()
 def get_user_and_pass():
     global user
     global pwd
-    user = input('Please enter your username:\n')
-    # This will not work in PyCharm
-    # pwd = getpass.getpass('Please enter your password:\n')
-    pwd = input('Please enter your password:\n')
+    user = 'Enter your username here'
+    pwd = 'Enter your password here'
 
 
 def binarization(image, threshold):
@@ -46,14 +43,25 @@ def binarization(image, threshold):
 def kq_success():
     with app.app_context():
         msg = Message('考勤正常', sender='Sender\'s email here', recipients=['Receiver\'s email here'])
-        msg.html = str(now)[0:19] + '<strong>Succeed</strong>'
+        msg.html = '<div>' \
+                   '<h1>' + str(now)[0:19] + '</h1>' \
+                                             '<h1>Succeed</h1>' \
+                                             '<div>' \
+                                             '<p>Congratulation!</p>' \
+                                             '</div>' \
+                                             '</div>'
         mail.send(msg)
 
 
 def kq_failed():
     with app.app_context():
         msg = Message('考勤异常', sender='Sender\'s email here', recipients=['Receiver\'s email here'])
-        msg.html = '<strong>Failed</strong>'
+        msg.html = '<div>' \
+                   '<h1>Failed</h1>' \
+                   '<div>' \
+                   '<p>You must recheck it!</p>' \
+                   '</div>' \
+                   '</div>'
         mail.send(msg)
 
 
