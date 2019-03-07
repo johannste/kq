@@ -47,7 +47,7 @@ def kq_success():
                    '<h1>' + str(now)[0:19] + '</h1>' \
                                              '<h1>Succeed</h1>' \
                                              '<div>' \
-                                             '<p>Congratulation!</p>' \
+                                             '<p>Congratulations!</p>' \
                                              '</div>' \
                                              '</div>'
         mail.send(msg)
