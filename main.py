@@ -11,7 +11,8 @@ from pytesseract import image_to_string
 from selenium import webdriver
 
 app = Flask(__name__)
-with open(sys.path[0] + "/setting.yml", encoding='utf-8') as f:
+path = sys.path[0]
+with open(path + '/setting.yml', encoding='utf-8') as f:
     setting = yaml.load(f, yaml.FullLoader)
     Driver = setting['driver']
     MAIL_SERVER = setting['mail']['mail_server']
@@ -126,7 +127,7 @@ def do_kq():
 
     try:
         driver.find_element_by_id('loginButton').click()
-        # driver.find_element_by_class_name('mr36').click()
+        driver.find_element_by_class_name('mr36').click()
         kq_success()
     except Exception as e:
         kq_failed(e)
