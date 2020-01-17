@@ -11,7 +11,7 @@ from pytesseract import image_to_string
 from selenium import webdriver
 
 app = Flask(__name__)
-with open("setting.yml", encoding='utf-8') as f:
+with open(sys.path[0] + "/setting.yml", encoding='utf-8') as f:
     setting = yaml.load(f, yaml.FullLoader)
     Driver = setting['driver']
     MAIL_SERVER = setting['mail']['mail_server']
@@ -43,7 +43,7 @@ def get_driver():
     if Driver == 'chrome':
         return webdriver.Chrome()
     elif Driver == 'firefox':
-        return webdriver.Chrome()
+        return webdriver.Firefox()
 
 
 driver = get_driver()
