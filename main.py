@@ -1,6 +1,6 @@
 import os
 import sys
-from _datetime import datetime
+from datetime import datetime
 
 import cv2
 import yaml
